@@ -1,9 +1,9 @@
 {
   "name": "react-native-swifty-gif",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "no des",
   "main": "src/index",
-  "author": " <> ()",
+  "author": "dinh.nt0322",
   "license": "UNLICENSED",
   "homepage": "#readme",
   "create-react-native-library": {
