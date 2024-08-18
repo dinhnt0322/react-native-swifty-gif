@@ -25,8 +25,6 @@ const SwiftyGif: FC<SwiftyGifProps> = props => {
     resolvedSource = source;
   }
 
-  console.log('resolvedSource', resolvedSource);
-
   return <SwiftyGifView {...props} source={resolvedSource} />;
 };
 
