@@ -5,11 +5,11 @@ folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 
 
 Pod::Spec.new do |s|
   s.name         = "react-native-swifty-gif"
-  s.version      = package["0.0.1"]
+  s.version      = package["version"]
   s.summary      = package["description"]
   s.homepage     = package["homepage"]
   s.license      = package["license"]
-  s.authors      = package["dinh.nt0322"]
+  s.authors      = package["author"]
 
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => "https://github.com/dinhnt0322/react-native-swifty-gif.git", :tag => "#{s.version}" }
