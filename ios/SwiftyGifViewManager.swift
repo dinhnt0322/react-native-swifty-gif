@@ -60,9 +60,8 @@ class SwiftyGifView: UIView, SwiftyGifDelegate {
     print("Loaded GIF: \(url)")
     self.gifImageView?.showFrameAtIndex(0)
     
-    let customManager = SwiftyGifManager(memoryLimit: 100)
     self.gifImageView?.delegate = self
-    self.gifImageView?.setGifFromURL(url, manager: customManager)
+    self.gifImageView?.setGifFromURL(url)
     } else {
     do {
       let gifImage = try UIImage(gifName: source)
