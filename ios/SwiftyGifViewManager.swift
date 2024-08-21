@@ -13,9 +13,10 @@ class SwiftyGifViewManager: RCTViewManager {
   }
 }
 
-class SwiftyGifView: UIView {
+class SwiftyGifView: UIView, SwiftyGifDelegate {
   
   private var gifImageView: UIImageView?
+  private var isPaused: Bool = false
   
   override init(frame: CGRect) {
   super.init(frame: frame)
@@ -56,7 +57,12 @@ class SwiftyGifView: UIView {
     }
     
     if let url = URL(string: source), UIApplication.shared.canOpenURL(url) {
-    self.gifImageView?.setGifFromURL(url)
+    print("Loaded GIF: \(url)")
+    self.gifImageView?.showFrameAtIndex(0)
+    
+    let customManager = SwiftyGifManager(memoryLimit: 100)
+    self.gifImageView?.delegate = self
+    self.gifImageView?.setGifFromURL(url, manager: customManager)
     } else {
     do {
       let gifImage = try UIImage(gifName: source)
@@ -85,6 +91,7 @@ class SwiftyGifView: UIView {
   
   private func updatePausedState(paused: Bool) {
   DispatchQueue.main.async {
+    self.isPaused = paused
     if paused {
     self.gifImageView?.stopAnimatingGif()
     } else {
@@ -96,5 +103,15 @@ class SwiftyGifView: UIView {
   override func layoutSubviews() {
   super.layoutSubviews()
   gifImageView?.frame = self.bounds
+  }
+  
+  func gifURLDidFinish(sender: UIImageView) {
+  DispatchQueue.main.async {
+    if self.isPaused {
+    self.gifImageView?.stopAnimatingGif()
+    }
+    // Handle the event when the GIF finishes loading from a URL
+    print("GIF finished loading from URL")
+  }
   }
 }
