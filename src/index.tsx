@@ -9,11 +9,11 @@ const resolveAssetSource = Image.resolveAssetSource;
 type SwiftyGifProps = {
   source: ImageSourcePropType;
   resizeMode?: string;
-  isPaused?: boolean;
+  paused?: boolean;
 } & ViewProps;
 
 const SwiftyGif: FC<SwiftyGifProps> = props => {
-  const {source} = props;
+  const {source, paused = false} = props;
   let resolvedSource = '';
 
   if (source?.uri) {
@@ -25,7 +25,7 @@ const SwiftyGif: FC<SwiftyGifProps> = props => {
     resolvedSource = source;
   }
 
-  return <SwiftyGifView {...props} source={resolvedSource} />;
+  return <SwiftyGifView {...props} paused={paused} source={resolvedSource} />;
 };
 
 export default SwiftyGif;
