@@ -18,7 +18,7 @@ class SwiftyGifView: UIView, SwiftyGifDelegate {
   private var gifImageView: UIImageView?
   private var isPaused: Bool = false
     
-  private let customSwiftyGifManager = SwiftyGifManager(memoryLimit: 10)
+  private let customSwiftyGifManager = SwiftyGifManager(memoryLimit: 60)
   
   override init(frame: CGRect) {
   super.init(frame: frame)
