@@ -48,9 +48,14 @@ class SwiftyGifView: UIView, SwiftyGifDelegate {
     updatePausedState(paused: RCTConvert.bool(paused))
   }
   }
-  
+
+  @objc var onLoadGifStart: RCTDirectEventBlock?
+  @objc var onLoadGifEnd: RCTDirectEventBlock?
+  @objc var onLoadGifError: RCTDirectEventBlock?
+    
   private func setupGifView(source: String) {
   DispatchQueue.main.async {
+    self.onLoadGifStart?([:])
     if self.gifImageView == nil {
     let gifImageView = UIImageView()
     gifImageView.contentMode = .scaleAspectFit
@@ -110,8 +115,16 @@ class SwiftyGifView: UIView, SwiftyGifDelegate {
     self.gifImageView?.showFrameAtIndex(0)
     self.gifImageView?.stopAnimatingGif()
     }
+    self.onLoadGifEnd?([:])
     // Handle the event when the GIF finishes loading from a URL
     print("GIF finished loading from URL")
   }
   }
+    func gifURLDidFail(sender: UIImageView, url: URL, error: (any Error)?) {
+        DispatchQueue.main.async {
+        let errorMessage = error?.localizedDescription ?? "Unknown error"
+        self.onLoadGifError?(["error":errorMessage])
+        print("GIF loaded Error")
+      }
+    }
 }
