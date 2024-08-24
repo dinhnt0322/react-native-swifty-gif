@@ -51,6 +51,7 @@ def supportsNamespace() {
 def reactNativeVersion = project.rootProject.ext.has("reactNativeVersion") ? project.rootProject.ext.get("reactNativeVersion") : "0.0.0"
 
 // Set the Fresco version based on the React Native version
+// Will implement later for react native version lower than 0.74.0
 def frescoVersion = reactNativeVersion >= '0.74.0' ? '3.2.0' : '2.6.0'
 
 android {
@@ -101,9 +102,9 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "com.facebook.fresco:fresco:$frescoVersion"
-  implementation "com.facebook.fresco:animated-gif:$frescoVersion"
-  implementation "com.facebook.fresco:animated-webp:$frescoVersion"
-  implementation "com.facebook.fresco:webpsupport:$frescoVersion"
+  implementation "com.facebook.fresco:fresco:3.2.0"
+  implementation "com.facebook.fresco:animated-gif:3.2.0"
+  implementation "com.facebook.fresco:animated-webp:3.2.0"
+  implementation "com.facebook.fresco:webpsupport:3.2.0"
 }
 
