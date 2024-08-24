@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
+    backgroundColor: 'transparent'
   },
   container: {
     overflow: 'hidden',
